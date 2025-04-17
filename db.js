@@ -15,7 +15,7 @@ async function main() {
     await mongoose
       .connect
       // Link do Mongo
-      (`mongodb+srv://${dbUser}:${dbPassword}@cluster0.urjryca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+      (`mongodb+srv://${dbUser}:${dbPassword}@clusterapi.gnrdo.mongodb.net/?retryWrites=true&w=majority&appName=Clusterapi`);
     console.log("Conectou ao banco de dados!");
 }
 // Exibe a msg ao usuário com erro

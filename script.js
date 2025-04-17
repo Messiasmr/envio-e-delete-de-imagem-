@@ -89,30 +89,10 @@ function createPhotoCardElement(photo) {
               onerror="this.onerror=null; this.src='${config.placeholderImage}'">
          <div class="photo-info">
              <div class="photo-name">${photo.name}</div>
-             <button class="btn-delete" onclick="deletePhoto('${photo._id}')">Deletar</button>
          </div>
          `;
 
   return card;
-}
-
-// Função para deletar uma foto
-async function deletePhoto(id) {
-  try {
-    const response = await fetch(`${config.apiUrl}/${id}`, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) {
-      throw new Error("Erro ao deletar a imagem");
-    }
-
-    showNotification("Imagem deletada com sucesso!");
-    loadAndDisplayPhotos(); // Atualiza a lista de fotos
-  } catch (error) {
-    console.error("Erro ao deletar:", error);
-    showNotification("Erro ao deletar imagem", "error");
-  }
 }
 
 // Função de gerenciamento (CRUD), envia a foto para o servidor com o FormData
@@ -202,3 +182,37 @@ document.addEventListener("DOMContentLoaded", () => {
   setupEventListeners(); // Configura todos os eventos
   loadAndDisplayPhotos(); // Carrega e exibe as fotos inicias
 });
+function createPhotoCardElement(photo) {
+  const card = document.createElement("div");
+  card.className = "photo-card";
+
+  const imageUrl = `${config.apiUrl}/${photo._id}/image`;
+
+  card.innerHTML = `
+    <img src="${imageUrl}" alt="${photo.name}" onerror="this.onerror=null; this.src='${config.placeholderImage}'">
+    <div class="photo-info">
+      <div class="photo-name">${photo.name}</div>
+      <button class="btn-delete" onclick="deletePhoto('${photo._id}')">Deletar</button>
+    </div>
+  `;
+
+  return card;
+}
+
+async function deletePhoto(id) {
+  try {
+    const response = await fetch(`${config.apiUrl}/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao deletar a imagem");
+    }
+
+    showNotification("Imagem deletada com sucesso!");
+    loadAndDisplayPhotos(); // Atualiza a lista de fotos
+  } catch (error) {
+    console.error("Erro ao deletar:", error);
+    showNotification("Erro ao deletar imagem", "error");
+  }
+}

@@ -1,4 +1,53 @@
+/* ...existing code... */
+
 /* =============================================
+       RESPONSIVIDADE
+       ============================================= */
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .modal-content {
+    margin: 30% auto;
+    width: 95%;
+  }
+}
+
+/* =============================================
+       PHOTO CARD
+       ============================================= */
+.photo-card {
+  position: relative; /* Necessário para posicionar o botão */
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.btn-delete {
+  position: absolute; /* Posiciona o botão dentro do card */
+  top: 10px; /* Distância do topo */
+  right: 10px; /* Distância da direita */
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+  background-color: #f57c00;
+}/* =============================================
    RESET E ESTILOS GLOBAIS
    ============================================= */
 * {
@@ -56,10 +105,7 @@ h1 {
 }
 
 .btn-delete {
-  position: absolute; /* Posiciona o botão dentro do card */
-  top: 10px; /* Distância do topo */
-  right: 10px; /* Distância da direita */
-  background-color: #ff9800;
+  background-color: #e74c3c;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -69,7 +115,7 @@ h1 {
 }
 
 .btn-delete:hover {
-  background-color: #f57c00;
+  background-color: #c0392b;
 }
 
 /* =============================================
@@ -83,7 +129,6 @@ h1 {
 }
 
 .photo-card {
-  position: relative; /* Necessário para posicionar o botão */
   background: white;
   border-radius: 10px;
   overflow: hidden;
